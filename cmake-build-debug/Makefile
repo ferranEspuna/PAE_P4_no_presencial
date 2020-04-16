@@ -150,6 +150,33 @@ dyn/dyn_app_common.c.s:
 	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.s
 .PHONY : dyn/dyn_app_common.c.s
 
+dyn/dyn_app_motors.o: dyn/dyn_app_motors.c.o
+
+.PHONY : dyn/dyn_app_motors.o
+
+# target to build an object file
+dyn/dyn_app_motors.c.o:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o
+.PHONY : dyn/dyn_app_motors.c.o
+
+dyn/dyn_app_motors.i: dyn/dyn_app_motors.c.i
+
+.PHONY : dyn/dyn_app_motors.i
+
+# target to preprocess a source file
+dyn/dyn_app_motors.c.i:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.i
+.PHONY : dyn/dyn_app_motors.c.i
+
+dyn/dyn_app_motors.s: dyn/dyn_app_motors.c.s
+
+.PHONY : dyn/dyn_app_motors.s
+
+# target to generate assembly for a file
+dyn/dyn_app_motors.c.s:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.s
+.PHONY : dyn/dyn_app_motors.c.s
+
 dyn/dyn_app_sensor.o: dyn/dyn_app_sensor.c.o
 
 .PHONY : dyn/dyn_app_sensor.o
@@ -378,6 +405,9 @@ help:
 	@echo "... dyn/dyn_app_common.o"
 	@echo "... dyn/dyn_app_common.i"
 	@echo "... dyn/dyn_app_common.s"
+	@echo "... dyn/dyn_app_motors.o"
+	@echo "... dyn/dyn_app_motors.i"
+	@echo "... dyn/dyn_app_motors.s"
 	@echo "... dyn/dyn_app_sensor.o"
 	@echo "... dyn/dyn_app_sensor.i"
 	@echo "... dyn/dyn_app_sensor.s"

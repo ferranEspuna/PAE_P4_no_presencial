@@ -80,6 +80,12 @@
 		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_common.h">
 			<Option target="Joystick"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.c">
+			<Option target="Joystick"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.h">
+			<Option target="Joystick"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_sensor.c">
 			<Option target="Joystick"/>
 		</Unit>

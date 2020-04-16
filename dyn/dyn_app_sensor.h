@@ -7,7 +7,8 @@
 
 #ifndef DYN_SENSOR_H_
 #define DYN_SENSOR_H_
-
+#include <stdbool.h>
+#include <stdint.h>
 
 
 

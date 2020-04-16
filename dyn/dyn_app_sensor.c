@@ -5,7 +5,6 @@
  *      Author: droma
  *
  * TODO: High-level functions like "distance_wall_front", etc
- * TODO: Generate another file for motors, with functions like "move_forward", etc
  */
 
 

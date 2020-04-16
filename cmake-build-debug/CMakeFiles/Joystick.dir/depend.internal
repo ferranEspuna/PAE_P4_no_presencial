@@ -4,6 +4,9 @@
 CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o
  /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_common.c
  /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_instr.h
+CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o
+ /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.c
+ /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.h
 CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o
  /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_sensor.c
 CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o

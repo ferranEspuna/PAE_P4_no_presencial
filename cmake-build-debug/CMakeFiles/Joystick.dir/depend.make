@@ -4,6 +4,9 @@
 CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o: ../dyn/dyn_app_common.c
 CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o: ../dyn/dyn_instr.h
 
+CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o: ../dyn/dyn_app_motors.c
+CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o: ../dyn/dyn_app_motors.h
+
 CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o: ../dyn/dyn_app_sensor.c
 
 CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o: ../dyn/dyn_frames.c

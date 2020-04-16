@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o"
+  "CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o"
   "CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o"
   "CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o"
   "CMakeFiles/Joystick.dir/dyn/dyn_instr.c.o"
