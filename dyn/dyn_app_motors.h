@@ -9,6 +9,20 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+//Distància entre les rodes serà 2*L, la distància de les rodes al centre del motor serà L.
+static const float L = 1.0;
+//El radi de les rodes serà L.
+static const float r = 1.0;
+//El mòdul de l'esquerra tindrà la id 1.
+static const uint8_t ID_MOTOR_LEFT = 1;
+//El mòdul de la dreta tindrà la id 2.
+static const uint8_t ID_MOTOR_RIGHT = 2;
+
+//Velocitat màxima dels motors dels mòduls Dynamixel.
+static const uint16_t DYN_MAX_SPEED = 0x03ff;
+//Velocitat mínima dels motors dels mòduls Dynamixel.
+static const uint16_t DYN_MIN_SPEED = 0x0001;
+
 /*
  *Les tres funcions següents permeten modificar valors dels registres dels
  * mòduls Dynamixel a fi de controlar el que fan els motors.
