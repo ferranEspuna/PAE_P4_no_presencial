@@ -104,6 +104,12 @@
 		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_instr.h">
 			<Option target="Joystick"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.c">
+			<Option target="Joystick"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.h">
+			<Option target="Joystick"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/b_queue.c">
 			<Option target="Joystick"/>
 		</Unit>

@@ -5,14 +5,10 @@
 
 
 #include "dyn_app_motors.h"
+#include "timers.h"
 #include <stdlib.h>
 
 //TODO: implementar les funcions del header
-
-/*Com no tenim accés al robot,
- *
- *
- */
 
 int robotStop(){
 
@@ -62,4 +58,20 @@ int robotMoveContinuous(int16_t speed){
 
     //Si no hi ha hagut cap error, retornmem 0.
     return 0;
+}
+
+int robotMoveTime(int16_t speed, float seconds){
+
+    int move = robotMoveContinuous(speed);
+    wait(seconds);
+    int stop = robotStop();
+
+    //si hi ha un error al moure's, el retornem
+    if(move > 0){
+        return move;
+    }
+
+    //si no, retornem el que retorni stop
+    return stop;
+
 }

@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o"
   "CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o"
   "CMakeFiles/Joystick.dir/dyn/dyn_instr.c.o"
+  "CMakeFiles/Joystick.dir/dyn/timers.c.o"
   "CMakeFiles/Joystick.dir/dyn_test/b_queue.c.o"
   "CMakeFiles/Joystick.dir/dyn_test/dyn_emu.c.o"
   "CMakeFiles/Joystick.dir/hal_dyn_uart/hal_dyn_uart_emu.c.o"

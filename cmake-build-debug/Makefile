@@ -258,6 +258,33 @@ dyn/dyn_instr.c.s:
 	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/dyn_instr.c.s
 .PHONY : dyn/dyn_instr.c.s
 
+dyn/timers.o: dyn/timers.c.o
+
+.PHONY : dyn/timers.o
+
+# target to build an object file
+dyn/timers.c.o:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/timers.c.o
+.PHONY : dyn/timers.c.o
+
+dyn/timers.i: dyn/timers.c.i
+
+.PHONY : dyn/timers.i
+
+# target to preprocess a source file
+dyn/timers.c.i:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/timers.c.i
+.PHONY : dyn/timers.c.i
+
+dyn/timers.s: dyn/timers.c.s
+
+.PHONY : dyn/timers.s
+
+# target to generate assembly for a file
+dyn/timers.c.s:
+	$(MAKE) -f CMakeFiles/Joystick.dir/build.make CMakeFiles/Joystick.dir/dyn/timers.c.s
+.PHONY : dyn/timers.c.s
+
 dyn_test/b_queue.o: dyn_test/b_queue.c.o
 
 .PHONY : dyn_test/b_queue.o
@@ -417,6 +444,9 @@ help:
 	@echo "... dyn/dyn_instr.o"
 	@echo "... dyn/dyn_instr.i"
 	@echo "... dyn/dyn_instr.s"
+	@echo "... dyn/timers.o"
+	@echo "... dyn/timers.i"
+	@echo "... dyn/timers.s"
 	@echo "... dyn_test/b_queue.o"
 	@echo "... dyn_test/b_queue.i"
 	@echo "... dyn_test/b_queue.s"

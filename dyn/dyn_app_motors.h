@@ -29,16 +29,16 @@ static const uint16_t DYN_MIN_SPEED = 0x0001;
  */
 
 //aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn.
-int dyn_turnContinuous(uint8_t id);
+int dyn_turnContinuous(uint8_t id);//TODO
 
 //aquesta funció posa la target speed del mòdul corresponent a la id passada a la velocitat passada.
-int dyn_setTurnSpeed(uint8_t id, uint16_t speed);
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed);//TODO
 
 //aquesta funció posa el gir del mòdul corresponent a la id passada en el sentit passat (true és horari i false antihorari).
-int dyn_setTurnDirection(uint8_t id, bool val);
+int dyn_setTurnDirection(uint8_t id, bool val);//TODO
 
 //aquesta funció atura el motor del mòdul corresponent a la id passada.
-int dyn_stop(uint8_t id);
+int dyn_stop(uint8_t id);//TODO
 
 
 /*
@@ -59,18 +59,18 @@ int robotMoveTime(int16_t speed, float time);
 
 //el robot gira sobre sí mateix amb la velocitat proporcionada
 //(si és positiva, sentit antihorari, si és negativa, sentit horari)
-int robotSpinContinuous(int16_t speed);
+int robotSpinContinuous(int16_t speed);//TODO
 
 //el mateix que en la versió contínua, però al cap d'un temps proporcionat s'atura
-int robotSpinTime(int16_t speed, float time);
+int robotSpinTime(int16_t speed, float time);//TODO
 
 // aquesta funció mou el robot cap a la direcció especificada (true
 //és cap a l'esquerra, false és cap a la dreta), a la velocitat especificada
 //(suposem que és la de la roda més lenta), cap endavant si la velocitat
 //és positiva i cap endarrera si la velocitat és negativa.
-int moveSideContinuous(int16_t speed, bool side);
+int moveSideContinuous(int16_t speed, bool side);//TODO
 
-int moveSideTime(int16_t speed, bool side, float time);
+int moveSideTime(int16_t speed, bool side, float time);//TODO
 
 
 /*
