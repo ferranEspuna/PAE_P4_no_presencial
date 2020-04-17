@@ -80,5 +80,5 @@ int robotMoveDistance(float speed, float distance);
 int robotTurnContinuous(float angularSpeed, float radius);
 
 //el mateix que la funció anterior, però per a un angle concret de gir. Quan el recorre s'atura.
-int robotTurnAngle(float angularSpeed, float radius, bool direction, float angle);
+int robotTurnAngle(float angularSpeed, float radius, float angle);
 
