@@ -14,14 +14,17 @@
  * mòduls Dynamixel a fi de controlar el que fan els motors.
  */
 
-//aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn
-int turnContinuous(uint8_t id);
+//aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn.
+int dyn_turnContinuous(uint8_t id);
 
-//aquesta funció posa la target speed del mòdul corresponent a la id passada a la velocitat passada
-int setTurnSpeed(uint8_t id, uint16_t speed);
+//aquesta funció posa la target speed del mòdul corresponent a la id passada a la velocitat passada.
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed);
 
-//aquesta funció posa el gir del mòdul corresponent a la id passada en el sentit passat (true és horari i false antihorari)
-int setTurnDirection(uint8_t id, bool val);
+//aquesta funció posa el gir del mòdul corresponent a la id passada en el sentit passat (true és horari i false antihorari).
+int dyn_setTurnDirection(uint8_t id, bool val);
+
+//aquesta funció atura el motor del mòdul corresponent a la id passada.
+int dyn_stop(uint8_t id);
 
 
 /*
@@ -31,7 +34,7 @@ int setTurnDirection(uint8_t id, bool val);
  */
 
 //aquesta funció atura el moviment del robot.
-int stop();
+int robotStop();
 
 //aquesta funció mou el robot en línea recta de forma contínua, en la direcció en la
 // que mira, a la velocitat passada i en el sentit corresponent al signe d'aquesta.
@@ -49,8 +52,8 @@ int robotSpinTime(int16_t speed, float time);
 
 // aquesta funció mou el robot cap a la direcció especificada (true
 //és cap a l'esquerra, false és cap a la dreta), a la velocitat especificada
-//(suposem que és la de la roda més lenta), cap endavant si la direcció
-//és positiva i cap endarrera si la direcció és negativa.
+//(suposem que és la de la roda més lenta), cap endavant si la velocitat
+//és positiva i cap endarrera si la velocitat és negativa.
 int moveSideContinuous(int16_t speed, bool side);
 
 int moveSideTime(int16_t speed, bool side, float time);
@@ -71,9 +74,10 @@ int robotMoveDistance(float speed, float distance);
 
 // aquesta funció mou el robot en un arc de circumferència de radi especificat,
 // a la velocitat angular especificada, cap endavant si és positiva i cap endarrera si és negativa,
-// i en el sentit especificat (true significa que el centre de gir és a la dreta del robot,
-// false significa que és a l'esquerra)
-int robotTurnContinuous(float angularSpeed, float radius, bool side);
+// i en el sentit especificat pel signe del radi (si el radi és positiu, el centre és a l'esquerra
+// del robot, si és negatiu, és a la dreta del robot (observem que, en el cas particular de radi 0,
+//el centre de gir és al centre del robot i la funció fa el mateix que robotSpinContinuous)
+int robotTurnContinuous(float angularSpeed, float radius);
 
 //el mateix que la funció anterior, però per a un angle concret de gir. Quan el recorre s'atura.
 int robotTurnAngle(float angularSpeed, float radius, bool direction, float angle);
