@@ -29,7 +29,7 @@ static const uint16_t DYN_MIN_SPEED = 0x0001;
  */
 
 //aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn.
-int dyn_turnContinuous(uint8_t id);//TODO
+int dyn_turnContinuous(uint8_t id);
 
 //aquesta funció posa la target speed del mòdul corresponent a la id passada a la velocitat passada.
 int dyn_setTurnSpeed(uint8_t id, uint16_t speed);//TODO

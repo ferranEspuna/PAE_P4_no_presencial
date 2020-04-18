@@ -6,9 +6,15 @@
 
 #include "dyn_app_motors.h"
 #include "timers.h"
+#include "dyn_instr.h"
 #include <stdlib.h>
 
 //TODO: implementar les funcions del header
+
+int dyn_turnContinuous(uint8_t id){
+    uint8_t vals[4] = {0x00, 0x00, 0x00, 0x00};
+    return dyn_write(id, DYN_REG__CW_ANGLE_LIMIT_L, vals, 4);
+}
 
 int robotStop(){
 

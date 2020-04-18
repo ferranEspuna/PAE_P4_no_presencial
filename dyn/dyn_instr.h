@@ -21,6 +21,12 @@ typedef enum _dyn_reg_type
 {
     DYN_REG__LED = 0x19,
     DYN_REG__MAX = 0x32,
+    DYN_REG__CW_ANGLE_LIMIT_L = 0X06,
+    DYN_REG__CW_ANGLE_LIMIT_H = 0X07,
+    DYN_REG__CCW_ANGLE_LIMIT_L = 0X08,
+    DYN_REG__CCW_ANGLE_LIMIT_H = 0X09,
+    DYN_REG__MOVING_SPEED_L = 0X20,
+    DYN_REG__MOVING_SPEED_H = 0X21
 } DYN_REG_t;
 
 int dyn_write_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t reg_write_val);

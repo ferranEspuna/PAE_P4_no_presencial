@@ -67,8 +67,20 @@ int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t* reg_read_val) 
  * @param[in] len Number of position to be written
  * @return Error code to be treated at higher levels.
  */
-int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len) {
-	//TODO: Implement multiposition write
+int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len) {//TODO no sé si funciona
+    uint8_t parameters[len + 1] ;
+    struct RxReturn reply;
+
+    parameters[0] = reg_addr;
+
+    for(int i = 0; i < len; i++){
+        parameters[i + 1] = *val;
+        val++;
+    }
+
+    reply = RxTxPacket(module_id, len + 1, DYN_INSTR__WRITE, parameters);
+
+    return (reply.tx_err < 1) | reply.time_out;
 	return 255;
 }
 
