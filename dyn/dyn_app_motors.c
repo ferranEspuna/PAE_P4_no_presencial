@@ -16,6 +16,10 @@ int dyn_turnContinuous(uint8_t id){
     return dyn_write(id, DYN_REG__CW_ANGLE_LIMIT_L, vals, 4);
 }
 
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction){}//TODO
+
+int dyn_stop(uint8_t id){}//TODO
+
 int robotStop(){
 
     //Aturem els dos motors
@@ -39,45 +43,27 @@ int robotMoveContinuous(int16_t speed){
     //Mirem el signe de la velocitat per a saber en quina direcció hem de girar les rodes
     bool sign = (speed > 0);
 
-    //si la velocitat és positiva, tira endavant i la roda de l'esquerra gira en sentit antihorari, i viceversa.
-    int directionLeft = dyn_setTurnDirection(ID_MOTOR_LEFT, !sign);
-    //si la velocitat és positiva, tira endavant i la roda de la dreta gira en sentit horari, i viceversa.
-    int dierctionRight = dyn_setTurnDirection(ID_MOTOR_RIGHT, sign);
-
     //trobem el valor absolut de la velocitat.
     uint16_t absSpeed = abs(speed);
 
     //Si la velocitat és més gran que la màxima, posem els motors a màxima velocitat.
     if(absSpeed > DYN_MAX_SPEED){absSpeed = DYN_MAX_SPEED;}
 
-    //Fem les operacions per a canviar el goalSped dels mòduls.
-    int speedLeft = dyn_setTurnSpeed(ID_MOTOR_LEFT, absSpeed);
-    int speedRight = dyn_setTurnSpeed(ID_MOTOR_RIGHT, absSpeed);
+    //Fem les operacions per a canviar la velocitat i direcció dels motors
+
+    //si anem cap endavant (sign és true), volem que la roda esquerra giri en sentit antihorari, i, si és false, horari
+    int speedLeft = dyn_setTurnSpeed(ID_MOTOR_LEFT, absSpeed, !sign);
+    //si anem cap endavant (sign és true), volem que la roda esquerra giri en sentit horari, i, si és false, antihorari
+    int speedRight = dyn_setTurnSpeed(ID_MOTOR_RIGHT, absSpeed, sign);
 
     //Creem un array amb els returns de les funcions bàsiques.
-    int returns[6] = {setupLeft, setupRight, directionLeft, dierctionRight, speedLeft, speedRight};
+    int returns[4] = {setupLeft, setupRight, speedLeft, speedRight};
 
     //Si alguna ha donat algun error (return major que 0), el retornem.
-    for(int i = 0; i < 6; i++){
+    for(int i = 0; i < 4; i++){
         if(returns[i] > 0){return returns[i];}
     }
 
     //Si no hi ha hagut cap error, retornmem 0.
     return 0;
-}
-
-int robotMoveTime(int16_t speed, float seconds){
-
-    int move = robotMoveContinuous(speed);
-    wait(seconds);
-    int stop = robotStop();
-
-    //si hi ha un error al moure's, el retornem
-    if(move > 0){
-        return move;
-    }
-
-    //si no, retornem el que retorni stop
-    return stop;
-
 }

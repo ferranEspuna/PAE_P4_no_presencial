@@ -3,3 +3,5 @@
 //
 
 #include "timers.h"
+#include <unistd.h>
+void wait(float seconds){sleep((int) seconds);}//

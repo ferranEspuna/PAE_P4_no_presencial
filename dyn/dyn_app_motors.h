@@ -31,14 +31,12 @@ static const uint16_t DYN_MIN_SPEED = 0x0001;
 //aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn.
 int dyn_turnContinuous(uint8_t id);
 
-//aquesta funció posa la target speed del mòdul corresponent a la id passada a la velocitat passada.
-int dyn_setTurnSpeed(uint8_t id, uint16_t speed);//TODO
-
-//aquesta funció posa el gir del mòdul corresponent a la id passada en el sentit passat (true és horari i false antihorari).
-int dyn_setTurnDirection(uint8_t id, bool val);//TODO
+//aquesta funció posa la velocitat del motor del mòdul corresponent a la id passada a la velocitat passada. La direcció serà true
+//si volem que giri en sentit horari, i viceversa.
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction);
 
 //aquesta funció atura el motor del mòdul corresponent a la id passada.
-int dyn_stop(uint8_t id);//TODO
+int dyn_stop(uint8_t id);
 
 
 /*
@@ -54,15 +52,9 @@ int robotStop();
 // que mira, a la velocitat passada i en el sentit corresponent al signe d'aquesta.
 int robotMoveContinuous(int16_t speed);
 
-//el mateix que la versió contínua, però per a un temps concret. Quan passa el temps s'atura.
-int robotMoveTime(int16_t speed, float time);
-
 //el robot gira sobre sí mateix amb la velocitat proporcionada
 //(si és positiva, sentit antihorari, si és negativa, sentit horari)
 int robotSpinContinuous(int16_t speed);//TODO
-
-//el mateix que en la versió contínua, però al cap d'un temps proporcionat s'atura
-int robotSpinTime(int16_t speed, float time);//TODO
 
 // aquesta funció mou el robot cap a la direcció especificada (true
 //és cap a l'esquerra, false és cap a la dreta), a la velocitat especificada
@@ -70,15 +62,19 @@ int robotSpinTime(int16_t speed, float time);//TODO
 //és positiva i cap endarrera si la velocitat és negativa.
 int moveSideContinuous(int16_t speed, bool side);//TODO
 
-int moveSideTime(int16_t speed, bool side, float time);//TODO
+
 
 
 /*
  * Aquestes funcions controlen més finament el moviment del robot.
  * de moment no les implementarem per a aquesta pràctica.
  * Tindran en compte les mesures del robot i substituiran les anteriors funcions.
+ * Utilitzaran també timers, que al final no hem d'implementar en aquesta pràctica
  * Les unitats proporcionades seran metres, metres per segon, radiants i radiants per segon.
  */
+
+//el mateix que la versió contínua, però per a un temps concret. Quan passa el temps s'atura.
+int robotMoveTime(int16_t speed, float time);
 
 //el mateix que RobotMoveContinuous, però la velocitat ve donada en unitats reals.
 int robotMoveContinuousRealSpeed(float speed);
@@ -86,12 +82,17 @@ int robotMoveContinuousRealSpeed(float speed);
 //el mateix que la versió contínua, però per a una distància concreta. Quan la recorre s'atura.
 int robotMoveDistance(float speed, float distance);
 
+//el mateix que en la versió contínua, però al cap d'un temps proporcionat s'atura
+int robotSpinTime(int16_t speed, float time);
+
 // aquesta funció mou el robot en un arc de circumferència de radi especificat,
 // a la velocitat angular especificada, cap endavant si és positiva i cap endarrera si és negativa,
 // i en el sentit especificat pel signe del radi (si el radi és positiu, el centre és a l'esquerra
 // del robot, si és negatiu, és a la dreta del robot (observem que, en el cas particular de radi 0,
 //el centre de gir és al centre del robot i la funció fa el mateix que robotSpinContinuous)
 int robotTurnContinuous(float angularSpeed, float radius);
+
+int moveSideTime(int16_t speed, bool side, float time);
 
 //el mateix que la funció anterior, però per a un angle concret de gir. Quan el recorre s'atura.
 int robotTurnAngle(float angularSpeed, float radius, float angle);
