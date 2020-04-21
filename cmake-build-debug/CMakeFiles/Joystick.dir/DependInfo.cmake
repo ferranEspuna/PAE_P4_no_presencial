@@ -4,17 +4,17 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_common.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_sensor.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_frames.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_instr.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_instr.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/timers.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/b_queue.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn_test/b_queue.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/dyn_emu.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/dyn_test/dyn_emu.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/hal_dyn_uart/hal_dyn_uart_emu.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/hal_dyn_uart/hal_dyn_uart_emu.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/joystick_emu/joystick.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/joystick_emu/joystick.c.o"
-  "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/main/main.c" "/cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug/CMakeFiles/Joystick.dir/main/main.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/dyn_app_common.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_common.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/dyn_app_motors.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_motors.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/dyn_app_sensor.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_app_sensor.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/dyn_frames.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_frames.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/dyn_instr.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/dyn_instr.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn/timers.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn/timers.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn_test/b_queue.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn_test/b_queue.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/dyn_test/dyn_emu.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/dyn_test/dyn_emu.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/hal_dyn_uart/hal_dyn_uart_emu.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/hal_dyn_uart/hal_dyn_uart_emu.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/joystick_emu/joystick.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/joystick_emu/joystick.c.o"
+  "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/main/main.c" "/cygdrive/c/Users/kript/CLionProjects/PAE_P4_no_presencial/cmake-build-debug/CMakeFiles/Joystick.dir/main/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
