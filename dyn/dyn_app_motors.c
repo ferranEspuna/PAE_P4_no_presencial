@@ -16,9 +16,28 @@ int dyn_turnContinuous(uint8_t id){
     return dyn_write(id, DYN_REG__CW_ANGLE_LIMIT_L, vals, 4);
 }
 
-int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction){}//TODO
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction){
 
-int dyn_stop(uint8_t id){}//TODO
+    //agafem els últims 8 bits de la velocitat.
+    uint8_t low = speed & 0xff;
+    //agafem els primers 8bits de la velocitat.
+    uint8_t high = (speed >> 8);
+
+    //si s'ha de moure el el sentit de les agulles del rellotge, posem un 1 al bit de direcció.
+    if(direction){high += 0x04;}
+
+    //posem els valors a escriure a memòria en un array
+    int data[2] = {low, high};
+
+    //escrivim els valors a la memòria, i retornem la resposta que axò doni.
+    return dyn_write(id, DYN_REG__MOVING_SPEED_L, data, 2);
+
+}
+
+int dyn_stop(uint8_t id){
+    //Posem la velocitat amb la id seleccionada a 0. Posem turn direction en sentit horari, do forma arbitrària.
+    dyn_setTurnSpeed(id, 0, true);
+}
 
 int robotStop(){
 
