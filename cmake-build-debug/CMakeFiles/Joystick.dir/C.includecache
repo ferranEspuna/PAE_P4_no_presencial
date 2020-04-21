@@ -6,14 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.c
-dyn_app_motors.h
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.h
-timers.h
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.h
-dyn_instr.h
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_instr.h
-stdlib.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_common.h
+stdbool.h
+-
+stdint.h
 -
 
 /cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.h
@@ -22,17 +18,45 @@ stdbool.h
 stdint.h
 -
 
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_instr.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/b_queue.h
 stdint.h
 -
-stdbool.h
+pthread.h
 -
 
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.c
-timers.h
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.h
-unistd.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/dyn_emu.h
+
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/joystick_emu/joystick.h
+stdint.h
 -
 
-/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/timers.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/main/main.c
+pthread.h
+-
+signal.h
+-
+assert.h
+-
+stdio.h
+-
+main.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/main/main.h
+../dyn/dyn_app_common.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_common.h
+../dyn_test/dyn_emu.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/dyn_emu.h
+../dyn_test/b_queue.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn_test/b_queue.h
+../joystick_emu/joystick.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/joystick_emu/joystick.h
+../dyn/dyn_app_motors.h
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/dyn/dyn_app_motors.h
+
+/cygdrive/c/Users/ferra/Desktop/JoystickCarla/main/main.h
+semaphore.h
+-
+sys/stat.h
+-
+fcntl.h
+-
 

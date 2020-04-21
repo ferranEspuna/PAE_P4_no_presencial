@@ -95,7 +95,7 @@ int main(void)
 
 
     printf("************************\n");
-	printf("Test passed successfully\n");
+	printf("Test passed successfully :) \n");
 	printf("Pulsar 'q' para terminar, qualquier tecla para seguir\r");
 
 
