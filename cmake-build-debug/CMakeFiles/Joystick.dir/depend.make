@@ -47,6 +47,7 @@ CMakeFiles/Joystick.dir/joystick_emu/joystick.c.o: ../joystick_emu/joystick.h
 CMakeFiles/Joystick.dir/joystick_emu/joystick.c.o: ../main/main.h
 
 CMakeFiles/Joystick.dir/main/main.c.o: ../dyn/dyn_app_common.h
+CMakeFiles/Joystick.dir/main/main.c.o: ../dyn/dyn_app_motors.h
 CMakeFiles/Joystick.dir/main/main.c.o: ../dyn_test/b_queue.h
 CMakeFiles/Joystick.dir/main/main.c.o: ../dyn_test/dyn_emu.h
 CMakeFiles/Joystick.dir/main/main.c.o: ../joystick_emu/joystick.h

@@ -8,6 +8,7 @@
 #include "../dyn_test/dyn_emu.h"
 #include "../dyn_test/b_queue.h"
 #include "../joystick_emu/joystick.h"
+#include "../dyn/dyn_app_motors.h"
 
 uint8_t estado = Ninguno, estado_anterior = Ninguno, finalizar = 0;
 /**
@@ -17,6 +18,8 @@ int main(void)
 {
 	pthread_t tid, jid;
 	uint8_t tmp;
+    uint16_t speed;
+    bool direction;
 
 	//Init semaphores for TX data handshake
     sem_unlink("/semaphore_tx_msp");
@@ -31,6 +34,13 @@ int main(void)
 	pthread_create(&tid, NULL, dyn_emu, (void*) &tid);
 	pthread_create(&jid, NULL, joystick_emu, (void*) &jid);
 
+
+
+	/**
+	 * Tests leds
+	 */
+
+	 /*
 	//Testing some high level function
 	printf("MAIN: Setting LED to 0 \n");
     dyn_led_control(1, 0);
@@ -42,11 +52,58 @@ int main(void)
 	printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
     assert(tmp == 1);
+	*/
+
+    /**
+     * Tests movimient continu
+     */
+
+    robotMoveContinuous(1000);
+
+	dyn_readTurnSpeed(1, &speed, &direction);
+	assert(speed == 1000);
+	assert(direction == false);
+
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 1000);
+    assert(direction == true);
 
 
-	printf("************************\n");
-	printf("Test passed successfully\n");
+    robotMoveContinuous(-3);
+
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 3);
+    assert(direction == true);
+
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 3);
+    assert(direction == false);
+
+
+    /**
+     * Test de parada
+     */
+
+    robotStop();
+
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 0);
+
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 0);
+
+
+
+    printf("************************\n");
+	printf("Test passed successfully :) \n");
 	printf("Pulsar 'q' para terminar, qualquier tecla para seguir\r");
+
+
+
+
+
+
+
 	fflush(stdout);//	return 0;
 
 	while(estado != Quit)

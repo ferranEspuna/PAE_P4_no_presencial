@@ -16,9 +16,28 @@ int dyn_turnContinuous(uint8_t id){
     return dyn_write(id, DYN_REG__CW_ANGLE_LIMIT_L, vals, 4);
 }
 
-int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction){}//TODO
+int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction){
 
-int dyn_stop(uint8_t id){}//TODO
+    //agafem els últims 8 bits de la velocitat.
+    uint8_t low = speed & 0xff;
+    //agafem els primers 8bits de la velocitat.
+    uint8_t high = (speed >> 8);
+
+    //si s'ha de moure el el sentit de les agulles del rellotge, posem un 1 al bit de direcció.
+    if(direction){high += 0x04;}
+
+    //posem els valors a escriure a memòria en un array
+    uint8_t data[2] = {low, high};
+
+    //escrivim els valors a la memòria, i retornem la resposta que axò doni.
+    return dyn_write(id, DYN_REG__MOVING_SPEED_L, data, 2);
+
+}
+
+int dyn_stop(uint8_t id){
+    //Posem la velocitat amb la id seleccionada a 0. Posem turn direction en sentit horari, do forma arbitrària.
+    return dyn_setTurnSpeed(id, 0, true);
+}
 
 int robotStop(){
 
@@ -66,4 +85,24 @@ int robotMoveContinuous(int16_t speed){
 
     //Si no hi ha hagut cap error, retornmem 0.
     return 0;
+}
+
+int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction){
+
+    //creem variables on guardarem els bytes que volem llegir
+    uint8_t valL;
+    uint8_t valH;
+
+    //llegim els bytes corresponents a la turn speed.
+    int read1 = dyn_read_byte(id, DYN_REG__MOVING_SPEED_L, &valL);
+    int read2 = dyn_read_byte(id, DYN_REG__MOVING_SPEED_H, &valH);
+
+    //concatenem els bytes i treiem el bit de direcció
+    *speed = (valL + (valH << 8)) & 0x3ff;
+
+    //obtenim el signe
+    *direction = valH >> 2;
+
+    //si hi ha hagut algun error al llegir, retornem 1. Si no, retornem 0.
+    return (read1 > 0) | (read2 > 0);
 }
