@@ -28,7 +28,7 @@ static const uint16_t DYN_MIN_SPEED = 0x0001;
  * mòduls Dynamixel a fi de controlar el que fan els motors.
  */
 
-//aquesta funció posa els motors del mòdul corresponent a la id passada a mode continuous turn.
+//aquesta funció posa els motors del mòdul corresponent a la id passada a mode endless turn.
 int dyn_turnContinuous(uint8_t id);
 
 //aquesta funció posa la velocitat del motor del mòdul corresponent a la id passada a la velocitat passada. La direcció serà true
@@ -37,6 +37,12 @@ int dyn_setTurnSpeed(uint8_t id, uint16_t speed, bool direction);
 
 //aquesta funció atura el motor del mòdul corresponent a la id passada.
 int dyn_stop(uint8_t id);
+
+//aquesta funció llegeix els bytes de velocitat de gir d'un mòdul i els assigna als punters passats.h
+int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction);
+
+//aquesta funció comprova si els motors estan en mode endless turn i assigna al punter passat true si és així, false si no.
+int dyn_readTunrContinuous(uint8_t id, bool *continuous);//TODO
 
 
 /*

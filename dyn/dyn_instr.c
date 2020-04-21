@@ -9,6 +9,7 @@
 
 #include "dyn_instr.h"
 #include "dyn_frames.h"
+#include <stdio.h>
 
 /**
  * Single byte write instruction
@@ -29,7 +30,9 @@ int dyn_write_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t reg_write_val)
 	parameters[1] = reg_write_val;
 	reply = RxTxPacket(module_id, 2, DYN_INSTR__WRITE, parameters);
 
-	return (reply.tx_err < 1) | reply.time_out;
+
+	return (reply.tx_err > 0) | reply.time_out;
+
 }
 
 /**
@@ -67,11 +70,11 @@ int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t* reg_read_val) 
  * @param[in] len Number of position to be written
  * @return Error code to be treated at higher levels.
  */
-int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len) {//TODO crec que funciona
+int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len) {
     //Com a molt escriurem 24 bytes, incloent la instrucció
     uint8_t parameters[24];
     //si hem d'escriure més de 23 bytes, retornarem un error
-    if(len > 23){return -1;}
+    if(len > 23){return 1;}
 
     struct RxReturn reply;
 
@@ -83,6 +86,7 @@ int dyn_write(uint8_t module_id, DYN_REG_t reg_addr, uint8_t *val, uint8_t len) 
 
     reply = RxTxPacket(module_id, len + 1, DYN_INSTR__WRITE, parameters);
 
-    return (reply.tx_err < 1) | reply.time_out;
+
+    return (reply.tx_err > 0) | reply.time_out;
 }
 
