@@ -106,3 +106,129 @@ int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction){
     //si hi ha hagut algun error al llegir, retornem 1. Si no, retornem 0.
     return (read1 > 0) | (read2 > 0);
 }
+
+int dyn_readTurnContinuous(uint8_t id, bool *continuous){
+
+    *continuous = true;
+
+    //creem una variable temporal per a llegir els registres de la memòria del mòdul Dynamixel corresponent als angle limits.
+    uint8_t tmp;
+    //creem una variable per a guardar possibles errors de lectura.
+    int read;
+
+    //llegim un dels valors a comprovar
+    read = dyn_read_byte(id, DYN_REG__CW_ANGLE_LIMIT_L, &tmp);
+    //Si hi ha error de lectura, suposem que el robot no està en el mode endless turn (arbitràriament) i retornem un error
+    if(read != 0){ *continuous = false; return 1;}//todo
+    //Si el valor llegit és diferent de 0, no estem en mode endless turn. S'ha fet la comprovació amb èxit i retornem 0
+    if(tmp != 0x00){continuous = false; return 1;}
+
+    //Repetim el mateix per a la resta:
+
+    read = dyn_read_byte(id, DYN_REG__CW_ANGLE_LIMIT_H, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 2;}
+
+    read = dyn_read_byte(id, DYN_REG__CCW_ANGLE_LIMIT_L, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 3;}
+
+    read = dyn_read_byte(id, DYN_REG__CCW_ANGLE_LIMIT_H, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 4;}
+
+    //Si tot l'anterior no ha retornat false ni hi ha hagut cap error de lectura, estem en mode endless turn:
+    *continuous = true;
+    return 0;
+
+
+
+}
+
+int robotSpinContinuous(int16_t speed){
+
+    //Si li passem el valor 0, aturem el robot.
+    if(speed == 0){return robotStop();}
+
+    //Posem els mòduls en mode turnContinuous
+    int setupLeft = dyn_turnContinuous(ID_MOTOR_LEFT);
+    int setupRight = dyn_turnContinuous(ID_MOTOR_RIGHT);
+
+    //Mirem el signe de la velocitat per a saber en quina direcció hem de girar les rodes
+    bool sign = (speed > 0);
+
+    //trobem el valor absolut de la velocitat.
+    uint16_t absSpeed = abs(speed);
+
+    //Si la velocitat és més gran que la màxima, posem els motors a màxima velocitat.
+    if(absSpeed > DYN_MAX_SPEED){absSpeed = DYN_MAX_SPEED;}
+
+    //Fem les operacions per a canviar la velocitat i direcció dels motors
+
+    //Si girem sobre nosaltres mateixos en sentit horari (sign és true), volem que la roda esquerra giri en sentit antihorari, i, si és false, horari
+    int speedLeft = dyn_setTurnSpeed(ID_MOTOR_LEFT, absSpeed, !sign);
+    //Si girem sobre nosaltres mateixos en sentit horari (sign és true), volem que la roda dreta giri en sentit antihorari, i, si és false, horari
+    int speedRight = dyn_setTurnSpeed(ID_MOTOR_RIGHT, absSpeed, !sign);
+
+    //Creem un array amb els returns de les funcions bàsiques.
+    int returns[4] = {setupLeft, setupRight, speedLeft, speedRight};
+
+    //Si alguna ha donat algun error (return major que 0), el retornem.
+    for(int i = 0; i < 4; i++){
+        if(returns[i] > 0){return returns[i];}
+    }
+
+    //Si no hi ha hagut cap error, retornmem 0.
+    return 0;
+}
+
+int moveSideContinuous(int16_t speed, int side) {
+    //Si li passem el valor 0, aturem el robot.
+    if (speed == 0) { return robotStop(); }
+
+    //Posem els mòduls en mode turnContinuous
+    int setupLeft = dyn_turnContinuous(ID_MOTOR_LEFT);
+    int setupRight = dyn_turnContinuous(ID_MOTOR_RIGHT);
+
+    //Mirem el signe de la velocitat per a saber en quina direcció hem de girar les rodes
+    bool sign = (speed > 0);
+
+    //trobem el valor absolut de la velocitat.
+    uint16_t absSpeed = abs(speed);
+
+    //Si la velocitat és més gran que la màxima, posem els motors a màxima velocitat.
+    if (absSpeed > DYN_MAX_SPEED) { absSpeed = DYN_MAX_SPEED; }
+
+    //Fem les operacions per a canviar la velocitat i direcció dels motors, mirant primer de tot el costat
+    //cap on volem anar. Si el side es positiu, ESQUERRA, per tant haurem de reduir a la meitat la velocitat
+    // de la roda de la l'esquerra. Si el side es negatiu, DRETA, per tant haurem de reduir a la meitat la
+    //velocitat de la roda de la dreta.
+    int speedLeft = 0;
+    int speedRight = 0;
+    if (side == 1) {
+        //ESQUERRA.
+        //Si anem cap endavant (sign és true), volem que la roda esquerra giri en sentit antihorari, i, si és false, horari
+        speedLeft = dyn_setTurnSpeed(ID_MOTOR_LEFT, absSpeed / 2, !sign);
+        //Si anem cap endavant (sign és true), volem que la roda dreta giri en sentit horari, i, si és false, antihorari
+        speedRight = dyn_setTurnSpeed(ID_MOTOR_RIGHT, absSpeed, sign);
+    } else {
+        //DRETA
+        //Si anem cap endavant (sign és true), volem que la roda esquerra giri en sentit antihorari, i, si és false, horari
+        speedLeft = dyn_setTurnSpeed(ID_MOTOR_LEFT, absSpeed, !sign);
+        //Si anem cap endavant (sign és true), volem que la roda dreta giri en sentit horari, i, si és false, antihorari
+        speedRight = dyn_setTurnSpeed(ID_MOTOR_RIGHT, absSpeed / 2, sign);
+    }
+
+
+
+    //Creem un array amb els returns de les funcions bàsiques.
+    int returns[4] = {setupLeft, setupRight, speedLeft, speedRight};
+
+    //Si alguna ha donat algun error (return major que 0), el retornem.
+    for (int i = 0; i < 4; i++) {
+        if (returns[i] > 0) { return returns[i]; }
+    }
+
+    //Si no hi ha hagut cap error, retornmem 0.
+    return 0;
+}
