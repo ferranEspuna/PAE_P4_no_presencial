@@ -42,7 +42,7 @@ int dyn_stop(uint8_t id);
 int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction);
 
 //aquesta funció comprova si els motors estan en mode endless turn i assigna al punter passat true si és així, false si no.
-int dyn_readTurnContinuous(uint8_t id, bool *continuous);//TODO
+int dyn_readTurnContinuous(uint8_t id, bool *continuous);
 
 
 /*

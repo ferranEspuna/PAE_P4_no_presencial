@@ -36,14 +36,17 @@ byte TxPacket(byte bID, byte bParameterLength, byte bInstruction,
 		const byte * Parametros) {
 	byte bCount, bCheckSum, bPacketLength;
 	byte TxBuffer[32];
+
+	if ((Parametros[0] < 6) && (bInstruction == 3)){//si s'intenta escriure en una adreça <= 0x05:
+		return 0;//no es pot fer, el return packet té longitud 0
+	}
+
 	f_Sentit_Dades_Tx();  //El pin P3.0 (DIRECTION_PORT) el posem a 1 (Transmetre)
 	TxBuffer[0] = 0xff;    //Primers 2 bytes que indiquen inici de trama FF, FF.
 	TxBuffer[1] = 0xff;
 	TxBuffer[2] = bID;         //ID del m�dul al que volem enviar el missatge
 	TxBuffer[3] = bParameterLength + 2; //Length(Parameter,Instruction,Checksum)
 	TxBuffer[4] = bInstruction;    //Instrucci� que enviem al M�dul
-
-	//TODO: La instrucci� no ha de poder modificar les primeres 5 instruccions
 
 	for (bCount = 0; bCount < bParameterLength; bCount++) //Comencem a generar la trama que hem d�enviar
 			{
