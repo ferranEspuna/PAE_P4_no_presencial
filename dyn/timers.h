@@ -7,4 +7,4 @@
 
 #endif //JOYSTICK_TIMERS_H
 
-void wait(float seconds); //TODO
+void wait(float seconds);

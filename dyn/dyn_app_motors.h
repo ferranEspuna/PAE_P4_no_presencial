@@ -64,7 +64,7 @@ int robotSpinContinuous(int16_t speed);
 
 // aquesta funció mou el robot cap a la direcció especificada (1
 //és cap a l'esquerra, 0 és cap a la dreta), a la velocitat especificada
-//(suposem que és la de la roda més lenta), cap endavant si la velocitat
+//(suposem que és la de la roda més ràpida), cap endavant si la velocitat
 //és positiva i cap endarrera si la velocitat és negativa.
 int moveSideContinuous(int16_t speed, int side);
 

@@ -109,24 +109,24 @@ int main(void)
     robotSpinContinuous(500);
     dyn_readTurnSpeed(1, &speed, &direction);
     assert(speed == 500);
-    assert(direction == false);
+    assert(direction == true);
     dyn_readTurnSpeed(2, &speed, &direction);
     assert(speed == 500);
-    assert(direction == false);
+    assert(direction == true);
 
     robotSpinContinuous(-400);
     dyn_readTurnSpeed(1, &speed, &direction);
     assert(speed == 400);
-    assert(direction == true);
+    assert(direction == false);
     dyn_readTurnSpeed(2, &speed, &direction);
     assert(speed == 400);
-    assert(direction == true);
+    assert(direction == false);
 
 
     /**
      * Tests de moviment cap als costats
      */
-    //Volem anar cap endavant i a la dreta.
+    //Volem anar cap endavant i a la l'esquerra
     moveSideContinuous(300,1);
     dyn_readTurnSpeed(1, &speed, &direction);
     assert(speed == 150);
@@ -135,7 +135,7 @@ int main(void)
     assert(speed == 300);
     assert(direction == true);
 
-    //Volem anar enrere i a l'esquerra
+    //Volem anar enrere i a la dreta
     moveSideContinuous(-200,0);
     dyn_readTurnSpeed(1, &speed, &direction);
     assert(speed == 200);
