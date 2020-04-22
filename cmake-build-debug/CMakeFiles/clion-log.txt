@@ -1,5 +1,5 @@
-C:\Users\ferra\.CLion2019.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/ferra/Desktop/JoystickCarla
--- The C compiler identification is GNU 9.3.0
+C:\Users\Nazar\AppData\Local\JetBrains\CLion2020.1\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/Nazar/CLionProjects/PAE_P4_no_presencial
+-- The C compiler identification is GNU 6.4.0
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -8,4 +8,4 @@ C:\Users\ferra\.CLion2019.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE
 -- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/c/Users/ferra/Desktop/JoystickCarla/cmake-build-debug
+-- Build files have been written to: /cygdrive/c/Users/Nazar/CLionProjects/PAE_P4_no_presencial/cmake-build-debug

@@ -22,6 +22,8 @@
 #include "../main/main.h"
 #include "../dyn/dyn_instr.h"
 
+#include "../dyn/dyn_app_sensor.h"
+
 // Number of dynamixel devices to be emulated
 #define N_DEVICES 3
 // Size of the dynamixel memory
@@ -196,6 +198,14 @@ void* dyn_emu(void *vargp) {
 	for (i = 0; i < N_DEVICES; ++i) {
 		dyn_mem[i][3] = i;
 	}
+
+	//Posem els registres de la memòria del mòdul sensor
+	//dedicats a les dades dels sensors infrarrojos
+	//a certs valors "hard-coded" a fi de poder fer tests des del main
+	dyn_mem[ID_SENSOR][DYN_REG__DISTANCE_LEFT] = 10;
+    dyn_mem[ID_SENSOR][DYN_REG__DISTANCE_CENTER] = 20;
+    dyn_mem[ID_SENSOR][DYN_REG__DISTANCE_RIGHT] = 30;
+
 	// TODO: Add other fields of interest of the dynamixel registers
 
 	// Add SIGTERM handler to kill the current thread

@@ -9,6 +9,7 @@
 #include "../dyn_test/b_queue.h"
 #include "../joystick_emu/joystick.h"
 #include "../dyn/dyn_app_motors.h"
+#include "../dyn/dyn_app_sensor.h"
 
 uint8_t estado = Ninguno, estado_anterior = Ninguno, finalizar = 0;
 /**
@@ -41,7 +42,6 @@ int main(void)
 	 * Tests leds
 	 */
 
-	 /*
 	//Testing some high level function
 	printf("MAIN: Setting LED to 0 \n");
     dyn_led_control(1, 0);
@@ -53,7 +53,6 @@ int main(void)
 	printf("MAIN: Getting LED value \n");
     dyn_led_read(1, &tmp);
     assert(tmp == 1);
-	*/
 
     /**
      * Tests movimient continu
@@ -159,6 +158,24 @@ int main(void)
     //El mateix per al mòdul dret
     dyn_readTurnSpeed(ID_MOTOR_RIGHT, &speed, &direction);
     assert(speed == 0);
+
+
+    /**
+     * Tests del sensor
+     */
+
+    //Llegim la distància registrada pel sensor infrarroig de l'esquerra
+    //Hauria de donar 10, que és el valor que hem posat "hard-coded" a dyn_emu
+    dyn_readDistanceLeft(ID_SENSOR, &tmp);
+    assert(tmp == 10);
+
+    //fem el mateix per als sensors central i dret.
+
+    dyn_readDistanceCenter(ID_SENSOR, &tmp);
+    assert(tmp == 20);
+
+    dyn_readDistanceRight(ID_SENSOR, &tmp);
+    assert(tmp == 30);
 
 
 
