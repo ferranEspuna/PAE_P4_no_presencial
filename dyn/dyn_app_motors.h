@@ -42,7 +42,7 @@ int dyn_stop(uint8_t id);
 int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction);
 
 //aquesta funció comprova si els motors estan en mode endless turn i assigna al punter passat true si és així, false si no.
-int dyn_readTurnContinuous(uint8_t id, bool *continuous);
+int dyn_readTurnContinuous(uint8_t id, bool *continuous);//TODO
 
 
 /*
@@ -60,13 +60,13 @@ int robotMoveContinuous(int16_t speed);
 
 //el robot gira sobre sí mateix amb la velocitat proporcionada
 //(si és positiva, sentit antihorari, si és negativa, sentit horari)
-int robotSpinContinuous(int16_t speed);//TODO
+int robotSpinContinuous(int16_t speed);
 
-// aquesta funció mou el robot cap a la direcció especificada (true
-//és cap a l'esquerra, false és cap a la dreta), a la velocitat especificada
+// aquesta funció mou el robot cap a la direcció especificada (1
+//és cap a l'esquerra, 0 és cap a la dreta), a la velocitat especificada
 //(suposem que és la de la roda més lenta), cap endavant si la velocitat
 //és positiva i cap endarrera si la velocitat és negativa.
-int moveSideContinuous(int16_t speed, bool side);//TODO
+int moveSideContinuous(int16_t speed, int side);
 
 
 

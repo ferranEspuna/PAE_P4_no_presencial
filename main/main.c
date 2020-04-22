@@ -102,6 +102,39 @@ int main(void)
     assert(speed == DYN_MAX_SPEED);
     assert(direction == true);
 
+    robotSpinContinuous(500);
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 500);
+    assert(direction == false);
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 500);
+    assert(direction == false);
+
+    robotSpinContinuous(-400);
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 400);
+    assert(direction == true);
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 400);
+    assert(direction == true);
+
+    //Volem anar cap endavant i a la dreta.
+    moveSideContinuous(300,1);
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 150);
+    assert(direction == false);
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 300);
+    assert(direction == true);
+
+    moveSideContinuous(-200,0);
+    dyn_readTurnSpeed(1, &speed, &direction);
+    assert(speed == 200);
+    assert(direction == true);
+    dyn_readTurnSpeed(2, &speed, &direction);
+    assert(speed == 100);
+    assert(direction == false);
+
 
     /**
      * Test de parada
