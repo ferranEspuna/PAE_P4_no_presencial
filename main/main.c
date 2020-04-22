@@ -20,6 +20,7 @@ int main(void)
 	uint8_t tmp;
     uint16_t speed;
     bool direction;
+    bool endless;
 
 	//Init semaphores for TX data handshake
     sem_unlink("/semaphore_tx_msp");
@@ -58,38 +59,63 @@ int main(void)
      * Tests movimient continu
      */
 
+    //Posem el robot en mode moviment continu.
     robotMoveContinuous(1000);
+    //Comprovem que el motor esquerre estigui en mode endless turn.
+    dyn_readTurnContinuous(ID_MOTOR_LEFT, &endless);
+    assert(endless == true);
+    //El mateix per al motor dret
+    dyn_readTurnContinuous(ID_MOTOR_RIGHT, &endless);
+    assert(endless == true);
 
-	dyn_readTurnSpeed(1, &speed, &direction);
+    //Llegim la velocitat i direcció del mòdul esquerre i comprovem que són els esperats.
+	dyn_readTurnSpeed(ID_MOTOR_LEFT, &speed, &direction);
 	assert(speed == 1000);
 	assert(direction == false);
 
-    dyn_readTurnSpeed(2, &speed, &direction);
+	//El mateix per al mòdul dret.
+    dyn_readTurnSpeed(ID_MOTOR_RIGHT, &speed, &direction);
     assert(speed == 1000);
     assert(direction == true);
 
 
+    //Repetim amb velocitat negativa, per a veure si es posa en la direcció contrària.
     robotMoveContinuous(-3);
 
-    dyn_readTurnSpeed(1, &speed, &direction);
+    dyn_readTurnSpeed(ID_MOTOR_LEFT, &speed, &direction);
     assert(speed == 3);
     assert(direction == true);
 
-    dyn_readTurnSpeed(2, &speed, &direction);
+    dyn_readTurnSpeed(ID_MOTOR_RIGHT, &speed, &direction);
     assert(speed == 3);
     assert(direction == false);
+
+
+    //Repetim amb una velocitat superior a la màxima, per a veure si es posa a velocitat màxima.
+    robotMoveContinuous(3000);
+
+    dyn_readTurnSpeed(ID_MOTOR_LEFT, &speed, &direction);
+    assert(speed == DYN_MAX_SPEED);
+    assert(direction == false);
+
+    dyn_readTurnSpeed(ID_MOTOR_RIGHT, &speed, &direction);
+    assert(speed == DYN_MAX_SPEED);
+    assert(direction == true);
 
 
     /**
      * Test de parada
      */
 
+    //Cridem a la funció per a aturar el robot
     robotStop();
 
-    dyn_readTurnSpeed(1, &speed, &direction);
+    //Comprovem que el mòdul esquerre està a velocitat 0
+    dyn_readTurnSpeed(ID_MOTOR_LEFT, &speed, &direction);
     assert(speed == 0);
 
-    dyn_readTurnSpeed(2, &speed, &direction);
+    //El mateix per al mòdul dret
+    dyn_readTurnSpeed(ID_MOTOR_RIGHT, &speed, &direction);
     assert(speed == 0);
 
 

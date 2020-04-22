@@ -8,6 +8,7 @@
 #include "timers.h"
 #include "dyn_instr.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 //TODO: implementar les funcions del header
 
@@ -106,3 +107,41 @@ int dyn_readTurnSpeed(uint8_t id, uint16_t *speed, bool *direction){
     //si hi ha hagut algun error al llegir, retornem 1. Si no, retornem 0.
     return (read1 > 0) | (read2 > 0);
 }
+
+int dyn_readTurnContinuous(uint8_t id, bool *continuous){
+
+    *continuous = true;
+
+    //creem una variable temporal per a llegir els registres de la memòria del mòdul Dynamixel corresponent als angle limits.
+    uint8_t tmp;
+    //creem una variable per a guardar possibles errors de lectura.
+    int read;
+
+    //llegim un dels valors a comprovar
+    read = dyn_read_byte(id, DYN_REG__CW_ANGLE_LIMIT_L, &tmp);
+    //Si hi ha error de lectura, suposem que el robot no està en el mode endless turn (arbitràriament) i retornem un error
+    if(read != 0){ *continuous = false;printf("fuuuuuck\n"); return 1;}//todo
+    //Si el valor llegit és diferent de 0, no estem en mode endless turn. S'ha fet la comprovació amb èxit i retornem 0
+    if(tmp != 0x00){continuous = false; return 1;}
+
+    //Repetim el mateix per a la resta:
+
+    read = dyn_read_byte(id, DYN_REG__CW_ANGLE_LIMIT_H, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 2;}
+
+    read = dyn_read_byte(id, DYN_REG__CCW_ANGLE_LIMIT_L, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 3;}
+
+    read = dyn_read_byte(id, DYN_REG__CCW_ANGLE_LIMIT_H, &tmp);
+    if(read != 0){ *continuous = false; return 1;}
+    if(tmp != 0x00){*continuous = false; return 4;}
+
+    //Si tot l'anterior no ha retornat false ni hi ha hagut cap error de lectura, estem en mode endless turn:
+    *continuous = true;
+    return 0;
+
+
+
+}//TODO

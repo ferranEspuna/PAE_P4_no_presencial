@@ -55,7 +55,7 @@ int dyn_read_byte(uint8_t module_id, DYN_REG_t reg_addr, uint8_t* reg_read_val) 
 	reply = RxTxPacket(module_id, 2, DYN_INSTR__READ, parameters);
 	*reg_read_val = reply.StatusPacket[5];
 
-	return (reply.tx_err < 1) | reply.time_out;
+	return (reply.tx_err > 0) | reply.time_out;
 }
 
 /**
