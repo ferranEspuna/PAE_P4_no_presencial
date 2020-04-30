@@ -9,6 +9,7 @@
 
 #include <pthread.h>
 #include <stdint.h>
+#include <stdio.h>
 #include "b_queue.h"
 
 // Avoid mallocs. Since we known we only need one queue, we will declared it static
@@ -79,4 +80,5 @@ QUEUE_RET queue_pop(uint8_t* data) {
 	pthread_mutex_unlock(&q.mutex);
 
 	return QUEUE_OK;
+
 }

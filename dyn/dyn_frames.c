@@ -12,6 +12,7 @@
 #ifndef __MSP432P401R__
 #include "../hal_dyn_uart/hal_dyn_uart_emu.h"
 #include "../dyn_test/fake_msp.h"
+#include <stdio.h>
 
 #define f_TxUAC2 TxUAC2_emu
 #define f_Sentit_Dades_Tx Sentit_Dades_Tx_emu
@@ -75,7 +76,6 @@ struct RxReturn RxPacket(void) {
 
 	respuesta.time_out = false;
 	respuesta.idx = 0;
-	respuesta.tx_err = false;//TODO
 	f_Sentit_Dades_Rx();   //Ponemos la linea half duplex en Rx
 	f_Activa_Timer_TimeOut();
 	for (bCount = 0; bCount < 4; bCount++) {
@@ -86,10 +86,23 @@ struct RxReturn RxPacket(void) {
 			f_rx_uart_byte(&respuesta);
 		} //fin del for
 	}
-	//TODO: Decode packet and verify checksum
 
+	//anem a comprovar que el checksum mes la suma de tots els bytes del paquet més el checksum doni 0.
+	//Per a tal fi, inicialitzem una suma 0.
+    byte bCheckSum = 0;
+	//Recorrem els bytes, començant pel tercer(ens saltem els dos 0xFF inicials)
+	//Determinem fins quin índex recórrer amb el byte de "length".
+    for (bCount = 2; bCount < respuesta.StatusPacket[3] + 4; bCount++) //C�lcul del checksum
+    {
+        //Anem sumant cada byte.
+        bCheckSum += respuesta.StatusPacket[bCount];
+    }
+    //Si tot ha anat bé, la suma hauria de donar 255.
+    //si no, posem un error en la resposta.
+    respuesta.tx_err = (bCheckSum != 255);
 	return respuesta;
 }
+
 
 
 /**
